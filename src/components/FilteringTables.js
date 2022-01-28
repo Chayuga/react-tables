@@ -1,10 +1,11 @@
 import React, { useMemo } from "react";
-import { useSortBy, useTable, useGlobalFilter } from "react-table";
+import { useSortBy, useTable, useGlobalFilter, useFilters } from "react-table";
 import MOCK_DATA from "./MOCK_DATA.json";
 import { COLUMNS } from "./columns";
 import "./table.css";
 import { AiFillCaretDown, AiFillCaretUp } from "react-icons/ai";
 import GlobalFilter from "./GlobalFilter";
+import ColumnFilter from "./ColumnFilter";
 
 const FilteringTable = () => {
   const columns = useMemo(() => COLUMNS, []);
@@ -26,6 +27,8 @@ const FilteringTable = () => {
       data,
     },
     useGlobalFilter,
+    useFilters,
+
     useSortBy
   );
 
@@ -53,6 +56,7 @@ const FilteringTable = () => {
                       ""
                     )}
                   </span>
+                  <div>{column.canFilter ? column.render("Filter") : null}</div>
                 </th>
               ))}
             </tr>
