@@ -11,6 +11,10 @@ const FilteringTable = () => {
   const columns = useMemo(() => COLUMNS, []);
   const data = useMemo(() => MOCK_DATA, []);
 
+  const defaultColumn = useMemo(() => {
+    return { Filter: ColumnFilter };
+  }, []);
+
   //==================== Destructure the useTable Hook ==========================//
   const {
     getTableProps,
@@ -25,10 +29,10 @@ const FilteringTable = () => {
     {
       columns,
       data,
+      defaultColumn,
     },
     useGlobalFilter,
     useFilters,
-
     useSortBy
   );
 
